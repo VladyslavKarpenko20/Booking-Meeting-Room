@@ -1,5 +1,4 @@
-﻿using Booking_Meeting_Rooms.Models;
-using Booking_Meeting_Rooms.RoomsDto;
+﻿using Booking_Meeting_Rooms.RoomsDto;
 
 namespace Booking_Meeting_Rooms.Interface
 {
