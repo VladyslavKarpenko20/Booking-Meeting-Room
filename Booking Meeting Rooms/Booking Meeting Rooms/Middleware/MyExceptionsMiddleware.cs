@@ -41,7 +41,7 @@ namespace Booking_Meeting_Rooms.Middleware
             }
             catch (UnAuthorizeExceptions ex)
             {
-                context.Response.StatusCode = 409;
+                context.Response.StatusCode = 401;
 
                 await context.Response.WriteAsJsonAsync(new
                 {
@@ -51,7 +51,7 @@ namespace Booking_Meeting_Rooms.Middleware
             }
             catch (ConflictExceptions ex)
             {
-                context.Response.StatusCode = 401;
+                context.Response.StatusCode = 409;
 
                 await context.Response.WriteAsJsonAsync(new
                 {
