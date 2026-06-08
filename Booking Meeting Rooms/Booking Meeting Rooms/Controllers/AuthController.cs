@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Booking_Meeting_Rooms.AuthDto;
 using Booking_Meeting_Rooms.Interface;
+using Booking_Meeting_Rooms.Exceptions;
 
 namespace Booking_Meeting_Rooms.Controllers
 {
@@ -23,12 +24,19 @@ namespace Booking_Meeting_Rooms.Controllers
             return Ok();
         }
 
-        [HttpPut("Login")]
-        public async Task<IActionResult> Login(string Email, string Password)
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
-            var token = await _authServices.Login(Email, Password);
+            if (string.IsNullOrWhiteSpace(loginDto.Password) || string.IsNullOrWhiteSpace(loginDto.Email))
+            {
+                throw new BadRequestExceptions("Invalid Data");
+            }
+            else
+            {
+                var token = await _authServices.Login(loginDto.Email, loginDto.Password);
 
-            return Ok(token);
+                return Ok(token);
+            }
         }
 
     }
