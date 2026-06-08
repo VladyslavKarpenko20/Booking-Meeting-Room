@@ -5,7 +5,7 @@ namespace Booking_Meeting_Rooms.Interface
 {
     public interface IBookingServices
     {
-        Task<List<BookingReadDto>> GetMyBookings(int Page, int PageSize, int userId ,string Status, DateTimeOffset? StartTime, DateTimeOffset? EndTime);
+        List<BookingReadDto> GetMyBookings(int Page, int PageSize, int userId ,string Status, DateTimeOffset? StartTime, DateTimeOffset? EndTime);
 
         Task AddBooking(BookingWriteDto bookingWrite, int userId, int roomId);
 

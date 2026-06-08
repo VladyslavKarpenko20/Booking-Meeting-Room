@@ -22,24 +22,36 @@ namespace Booking_Meeting_Rooms.Controllers
 
         [Authorize]
         [HttpGet("Get/My/Booking/{Page:int}/{PageSize:int}")]
-        public async Task<IActionResult> GetMyBooking(int Page = 1, int PageSize = 10, string Status = "all", DateTimeOffset? StartTime = null, DateTimeOffset? EndTime = null)
+        public IActionResult GetMyBooking(int Page = 1, int PageSize = 10, string Status = "all", DateTimeOffset? StartTime = null, DateTimeOffset? EndTime = null)
         {
-            int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            var res = await _bookingServices.GetMyBookings(Page, PageSize, userId, Status, StartTime, EndTime);
+            if (int.TryParse(userId, out int result))
+            {
 
-            return Ok(res);
+                var res = _bookingServices.GetMyBookings(Page, PageSize, result, Status, StartTime, EndTime);
+
+                return Ok(res);
+            }
+            else
+                return Unauthorized("Failed to identify user from token");
         }
 
         [Authorize]
         [HttpPost("Add/Booking/{roomId:int}")]
         public async Task<IActionResult> AddBooking([FromBody] BookingWriteDto bookingWrite, int roomId)
         {
-            int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            await _bookingServices.AddBooking(bookingWrite,userId, roomId );
+            if (int.TryParse(userId, out int result))
+            {
 
-            return Ok();
+                await _bookingServices.AddBooking(bookingWrite, result, roomId);
+
+                return Ok();
+            }
+            else
+                return Unauthorized("Failed to identify user from token");
         }
 
         [Authorize(Roles = nameof(Role.Admin))]
@@ -55,11 +67,19 @@ namespace Booking_Meeting_Rooms.Controllers
         [HttpDelete("Delete/My/Booking/{bookingId:int}")]
         public async Task<IActionResult> DeleteMyBooking(int bookingId)
         {
-            int userId = int.Parse(HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            await _bookingServices.DeleteMyBooking(bookingId,userId);
+            if (int.TryParse(userId, out int result))
+            {
 
-            return Ok();
+                await _bookingServices.DeleteMyBooking(bookingId, result);
+
+                return Ok();
+            }
+            else
+                return Unauthorized("Failed to identify user from token");
+
+
         }
 
         [Authorize(Roles = nameof(Role.Admin))]

@@ -8,7 +8,7 @@ namespace Booking_Meeting_Rooms.Properties.RoomDateDto
 
         public int CountBooking { get; set; }
 
-        public List<BookingDate> Bookings { get; set; }
+        public List<BookingDate> Bookings { get; set; } = new();
 
 
     }

@@ -7,11 +7,11 @@ namespace Booking_Meeting_Rooms.Models
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Email { get; set; }   
+        public string? Email { get; set; }   
 
-        public string Password { get; set; }
+        public string? Password { get; set; }
 
         public List<Bookings> Bookings { get; set; } = new();
 

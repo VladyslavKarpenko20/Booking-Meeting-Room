@@ -43,7 +43,7 @@ builder.Services.AddAuthentication("Bearer")
 .AddJwtBearer("Bearer", options =>
 {
 
-    var secretKey = builder.Configuration["JWTSetting:SecretKey"];
+    var secretKey = builder.Configuration["JWTSetting:SecretKey"] ?? "1234";
 
     options.TokenValidationParameters = new TokenValidationParameters
     {

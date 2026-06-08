@@ -27,6 +27,9 @@ namespace Booking_Meeting_Rooms.Services
 
         public async Task Registr(RegistrDto registrDto)
         {
+            if (string.IsNullOrWhiteSpace(registrDto.Email) || string.IsNullOrWhiteSpace(registrDto.Password))
+                throw new BadRequestExceptions("Invalid Data");
+
             var user = await _userRepository.GetUserByEmail(registrDto.Email);
 
             if (user != null)
@@ -54,21 +57,28 @@ namespace Booking_Meeting_Rooms.Services
 
             var user = await _userRepository.GetUserByEmail(login.Email);
 
+
             if (user == null)
                 throw new NotFoundExceptions("User Not Found");
+
+            if (string.IsNullOrWhiteSpace(user.Password))
+                throw new BadRequestExceptions("Invalid Data");
 
             var password = _passwordHasher.VerifyHashedPassword(user, user.Password, login.Password);
 
             if (password == PasswordVerificationResult.Failed)
                 throw new BadRequestExceptions("Invalid Password Data");
 
-            return await GenerateAcsesToken(user);
+            return GenerateAcsesToken(user);
 
         }
 
-        public async Task<string> GenerateAcsesToken(User user)
+        public string GenerateAcsesToken(User user)
         {
-            var secretKey = _configuration["JWTSetting:SecretKey"];
+            if (string.IsNullOrWhiteSpace(user.Name) || string.IsNullOrWhiteSpace(user.Email))
+                throw new BadRequestExceptions("Invalid Data");
+
+            var secretKey = _configuration["JWTSetting:SecretKey"] ?? "1234";
 
             var claims = new List<Claim>
             {

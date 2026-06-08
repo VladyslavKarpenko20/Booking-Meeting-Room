@@ -24,7 +24,7 @@ namespace Booking_Meeting_Rooms.Services
             _userRepository = userRepository;
         }
 
-        public async Task<List<BookingReadDto>> GetMyBookings(int Page, int PageSize, int userId, string Status, DateTimeOffset? StartTime, DateTimeOffset? EndTime)
+        public List<BookingReadDto> GetMyBookings(int Page, int PageSize, int userId, string Status, DateTimeOffset? StartTime, DateTimeOffset? EndTime)
         {
             if (Page < 1 || PageSize > 50 || PageSize < 1)
                 throw new BadRequestExceptions("Invalid Data");
@@ -32,7 +32,7 @@ namespace Booking_Meeting_Rooms.Services
             if (StartTime > EndTime)
                 throw new BadRequestExceptions("Invalid Data");
 
-            var res =  _bookingRepository.GetMyBookings(userId);
+            var res = _bookingRepository.GetMyBookings(userId);
 
             var MyBooking = res.AsQueryable();
 
@@ -144,12 +144,10 @@ namespace Booking_Meeting_Rooms.Services
 
         public async Task DeleteMyBooking(int bookingId, int userId)
         {
-            int Page = 1;
-            int PageSize = 10;
 
             var bookings = await _bookingRepository.GetBookingsById(bookingId);
 
-            if (bookings.UserId != userId)
+            if (bookings == null || bookings.UserId != userId)
                 throw new NotFoundExceptions("Booking Not Found");
 
             if (bookings.EndTime > DateTimeOffset.UtcNow)
@@ -189,8 +187,6 @@ namespace Booking_Meeting_Rooms.Services
 
             var bookingsByID = await _bookingRepository.GetBookingsById(bookingId);
 
-            int Page = 1;
-            int PageSize = 10;
 
             if (bookingsByID == null)
                 throw new NotFoundExceptions("Booking Not Found");

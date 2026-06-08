@@ -6,10 +6,10 @@ namespace Booking_Meeting_Rooms.AuthDto
     {
         [Required]
         [EmailAddress]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required]
         [MaxLength(20)]
-        public string Password { get; set; }
+        public string? Password { get; set; }
     }
 }

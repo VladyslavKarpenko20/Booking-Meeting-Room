@@ -43,7 +43,7 @@ namespace Booking_Meeting_Rooms.Repository
 
         public async Task<Equipment?> FindEquipment(string Name)
         {
-            return await _context.Equipment.FirstOrDefaultAsync(e => e.Name.ToLower() == Name.ToLower());
+            return await _context.Equipment.FirstOrDefaultAsync(e => e.Name != null && e.Name.ToLower() == Name.ToLower());
         }
 
 

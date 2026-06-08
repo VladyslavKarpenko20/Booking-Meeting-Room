@@ -100,12 +100,12 @@ namespace Booking_Meeting_Rooms.Services
 
             var res = await _roomRepository.GetRoomById(roomId);
 
+            if (res == null)
+                throw new NotFoundExceptions("Room Not Found");
+
             var equipments = await _equipmentRepository.GetEquipmentById(roomWrite.Equipment);
 
             res.Equipment = equipments;
-
-            if (res == null)
-                throw new NotFoundExceptions("User Not Found");
 
             await _roomRepository.UpdateRoom(res);
         }

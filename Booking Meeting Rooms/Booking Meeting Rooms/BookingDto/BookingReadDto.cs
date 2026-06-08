@@ -14,9 +14,9 @@ namespace Booking_Meeting_Rooms.BookingDto
 
         public int RoomId { get; set; }
 
-        public UserShortDto User { get; set; }
+        public UserShortDto User { get; set; } = new();
 
-        public RoomShortDto Room { get; set; }
+        public RoomShortDto Room { get; set; } = new();
 
         public int UserId { get; set; }
     }

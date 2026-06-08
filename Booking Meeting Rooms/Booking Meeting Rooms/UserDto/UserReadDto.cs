@@ -6,10 +6,10 @@ namespace Booking_Meeting_Rooms.UserDto
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
-        public List<BookingShortDto> Booking {  get; set; }
+        public List<BookingShortDto> Booking { get; set; } = new();
     }
 }
