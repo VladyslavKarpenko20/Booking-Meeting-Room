@@ -54,7 +54,7 @@ namespace Booking_Meeting_Rooms.Controllers
 
         [Authorize(Roles = nameof(Role.Admin))]
         [HttpPut("Update/Room/{roomId:int}")]
-        public async Task<IActionResult> UpdateRoom(int roomId, RoomWriteDto roomWrite)
+        public async Task<IActionResult> UpdateRoom(int roomId, [FromBody]RoomWriteDto roomWrite)
         {
             await _roomServices.UpdateRoom(roomId, roomWrite);
 

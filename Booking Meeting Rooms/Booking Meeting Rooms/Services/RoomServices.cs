@@ -106,6 +106,7 @@ namespace Booking_Meeting_Rooms.Services
             var equipments = await _equipmentRepository.GetEquipmentById(roomWrite.Equipment);
 
             res.Equipment = equipments;
+            res.Capacity = roomWrite.Capacity;
 
             await _roomRepository.UpdateRoom(res);
         }
