@@ -221,9 +221,8 @@ namespace Booking_Meeting_Rooms.Services
             if (room == null)
                 throw new NotFoundExceptions("Room Not Found");
 
-
-
             var list = _bookingRepository.GetQueryableBookingsByRoomId(roomId);
+
 
             var booking = list.AsQueryable();
 

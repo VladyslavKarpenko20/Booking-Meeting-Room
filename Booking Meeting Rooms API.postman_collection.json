@@ -1,0 +1,595 @@
+{
+  "info": {
+    "_postman_id": "105e0fee-0b26-42fe-aa94-77915c39ad9f",
+    "name": "Booking Meeting Rooms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54728072",
+    "_collection_link": "https://go.postman.co/collection/54728072-105e0fee-0b26-42fe-aa94-77915c39ad9f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Email\": \"Admin@gmail.com\",\r\n    \"Password\": \"Admin1234\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/Auth/Login",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Auth",
+            "Login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetAllEquipment",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Equipment/Get/All/Equipment/1/10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Equipment",
+            "Get",
+            "All",
+            "Equipment",
+            "1",
+            "10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddEquipments",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Equipment/Add/Equipment/Notebook",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Equipment",
+            "Add",
+            "Equipment",
+            "Notebook"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteEquipment",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Equipment/Delete/Equipment/4",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Equipment",
+            "Delete",
+            "Equipment",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Name\": \"Steve\",\r\n    \"Email\": \"Steve@gmail.com\",\r\n    \"Password\": \"TestPassword\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/Auth/Registr",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Auth",
+            "Registr"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GeneratePdf",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/GeneratePdf/Generate/Pdf?year=2026&mounth=5&day=8",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "GeneratePdf",
+            "Generate",
+            "Pdf"
+          ],
+          "query": [
+            {
+              "key": "year",
+              "value": "2026"
+            },
+            {
+              "key": "mounth",
+              "value": "5"
+            },
+            {
+              "key": "day",
+              "value": "8"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetAllRoom",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Room/Get/Rooms/1/10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Room",
+            "Get",
+            "Rooms",
+            "1",
+            "10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddRoom",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Name\": \"TestRoom2\",\r\n    \"Capacity\": 10,\r\n    \"Equipment\": [1,2,4] \r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/Room/Add/Room",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Room",
+            "Add",
+            "Room"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteRoom",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Room/Delete/Room/4",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Room",
+            "Delete",
+            "Room",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateRoom",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Name\": \"Room2\",\r\n    \"Capacity\": 1000,\r\n    \"Equipment\": [1,2,6] \r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/Room/Update/Room/2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Room",
+            "Update",
+            "Room",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "AddBooking",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Year\": 2026,\r\n    \"Month\": 6,\r\n    \"Day\": 15,\r\n    \"Hour\": 10\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/Booking/Add/Booking/2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Booking",
+            "Add",
+            "Booking",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetMyBookings",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Booking/Get/My/Booking/1/10?all&2025-06-10&2026-010-10",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Booking",
+            "Get",
+            "My",
+            "Booking",
+            "1",
+            "10"
+          ],
+          "query": [
+            {
+              "key": "all",
+              "value": null
+            },
+            {
+              "key": "2025-06-10",
+              "value": null
+            },
+            {
+              "key": "2026-010-10",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteBooking",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Booking/Delete/Booking/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Booking",
+            "Delete",
+            "Booking",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteMyBooking",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Booking/Delete/My/Booking/2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Booking",
+            "Delete",
+            "My",
+            "Booking",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateBooking",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"Year\": 2026,\r\n    \"Month\": 8,\r\n    \"Day\": 8,\r\n    \"Hour\": 9\r\n\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/Booking/Update/Booking/2/4/Admin@gmail.com",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Booking",
+            "Update",
+            "Booking",
+            "2",
+            "4",
+            "Admin@gmail.com"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetAllBooking",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/Booking/Get/All/Booking?Page=1&PageSize=10&Status=all&roomId=4&StartTime=&EndTime=",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "Booking",
+            "Get",
+            "All",
+            "Booking"
+          ],
+          "query": [
+            {
+              "key": "Page",
+              "value": "1"
+            },
+            {
+              "key": "PageSize",
+              "value": "10"
+            },
+            {
+              "key": "Status",
+              "value": "all"
+            },
+            {
+              "key": "roomId",
+              "value": "4"
+            },
+            {
+              "key": "StartTime",
+              "value": ""
+            },
+            {
+              "key": "EndTime",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetRoomById",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
